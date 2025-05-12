@@ -36,8 +36,8 @@ cd tz_convenient_software
 # Using Maven Wrapper (recommended)
 ./mvnw clean package
 
-# Or using system Maven
-# mvn clean package
+* Or using system Maven
+* mvn clean package
 
 This will create a .jar file in the target/ directory.
 ### 4. Run using Docker Compose (Recommended)
@@ -63,7 +63,7 @@ You can also run the JAR file directly. Make sure you provide the correct absolu
 java -jar target/*.jar
 #(Note: When running natively, the file path parameter in the API call should be the actual path on your host machine accessible by the running process, unlike the /data/... path used with Docker Compose.)
 
-###Swagger UI / API Documentation
+### Swagger UI / API Documentation
 This application includes Swagger UI, which provides an interactive web interface for exploring and testing the API.
 Once the service is running (either via Docker Compose or natively), you can access the Swagger UI in your web browser at:
 http://localhost:8080/swagger-ui.html
