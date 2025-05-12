@@ -3,6 +3,7 @@ package max.iv.tz_convenient_software.services.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import max.iv.tz_convenient_software.services.XlsxServiceInterface;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.Files;
@@ -16,7 +17,6 @@ import java.util.PriorityQueue;
 import static max.iv.tz_convenient_software.utill.ExcelReader.readIntegersFromXlsx;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
 public class XlsxServiceImpl implements XlsxServiceInterface {
     @Override
