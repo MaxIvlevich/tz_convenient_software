@@ -6,6 +6,7 @@ import max.iv.tz_convenient_software.services.XlsxServiceInterface;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
@@ -30,16 +31,24 @@ public class XlsxServiceImpl implements XlsxServiceInterface {
     @Override
     public int findNthMinimum(List<Integer> numbers, int n) {
         if (numbers == null || numbers.size() < n || n <= 0) {
+            log.error("Invalid input for findNthMinimum: list size={}, n={}", numbers == null ? "null" : numbers.size(), n);
             throw new IllegalArgumentException("Invalid input data: the list size is less than N or N < 0");
         }
-        PriorityQueue<Integer> heap = new PriorityQueue<>(numbers);
-        int result = -1;
-        for (int i = 0; i < n; i++) {
-            Integer polled = heap.poll();
-            if (polled == null) {
-                throw new IllegalStateException("There are not enough numbers to find the nth minimum element.");
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(n, Comparator.reverseOrder());
+        for (Integer number : numbers) {
+            if (number == null) continue;
+
+            if (maxHeap.size() < n) {
+                maxHeap.offer(number);
+            } else if (number < maxHeap.peek()) {
+                maxHeap.poll();
+                maxHeap.offer(number);
             }
-            result = polled;
+        }
+        Integer result = maxHeap.peek();
+        if (result == null) {
+
+            throw new IllegalStateException("Could not determine the nth minimum element.");
         }
         log.info("The {}-th minimum number is {}", n, result);
         return result;
