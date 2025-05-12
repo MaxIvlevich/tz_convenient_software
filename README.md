@@ -62,7 +62,18 @@ fter copying, the file new_report.xlsx will be accessible to the service inside 
 You can also run the JAR file directly. Make sure you provide the correct absolute or relative path to your XLSX files from the location where you run the command.
 java -jar target/*.jar
 ##(Note: When running natively, the file path parameter in the API call should be the actual path on your host machine accessible by the running process, unlike the /data/... path used with Docker Compose.)
+Swagger UI / API Documentation
+##This application includes Swagger UI, which provides an interactive web interface for exploring and testing the API.
+Once the service is running (either via Docker Compose or natively), you can access the Swagger UI in your web browser at:
+http://localhost:8080/swagger-ui.html
+From the Swagger UI, you can:
+View the available API endpoints (like GET /api/xlsx/nth-min).
 
+See details about required parameters (path, n) and their data types.
+
+Execute API requests directly from the browser.
+
+View example responses and status codes.
 ## API Usage
 Endpoint
 GET /api/xlsx/nth-min
@@ -71,6 +82,7 @@ Parameters
 * n (integer, required): The position of the minimum number to find (e.g., 1 for the minimum, 2 for the second minimum, etc.). Must be greater than 0 and not exceed the count of valid numbers in the file's first column.
 ## Technology Stack
 * Java 21
+* SpringDoc OpenAPI / Swagger UI (for API Documentation)
 * Spring Boot 3.x
 * Apache POI (for XLSX handling)
 * Lombok
