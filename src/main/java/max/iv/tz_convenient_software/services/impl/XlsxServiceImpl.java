@@ -5,7 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import max.iv.tz_convenient_software.services.XlsxServiceInterface;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -54,23 +57,30 @@ public class XlsxServiceImpl implements XlsxServiceInterface {
         return result;
     }
 
-    public void isCorrectFile(String path){
-        File file = new File(path);
-        if (!file.exists()) {
-            log.error("File not found: {}", path);
-            throw new IllegalArgumentException("File not found: " + path);
-        }
-        if (!file.isFile()) {
-            log.error("Not a file: {}", path);
-            throw new IllegalArgumentException("Not a file: " + path);
-        }
-        if (!file.canRead()) {
-            log.error("Cannot read file: {}", path);
-            throw new IllegalArgumentException("Cannot read file: " + path);
-        }
-        if (!path.toLowerCase().endsWith(".xlsx")) {
-            log.error("Invalid file extension (expected .xlsx): {}", path);
-            throw new IllegalArgumentException("Invalid file extension (expected .xlsx): " + path);
+    public void isCorrectFile(String pathString){
+        try {
+            Path path = Paths.get(pathString);
+
+            if (!Files.exists(path)) {
+                log.error("File not found: {}", pathString);
+                throw new IllegalArgumentException("File not found: " + pathString);
+            }
+            if (!Files.isRegularFile(path)) {
+                log.error("Not a file: {}", pathString);
+                throw new IllegalArgumentException("Not a file: " + pathString);
+            }
+            if (!Files.isReadable(path)) {
+                log.error("Cannot read file: {}", pathString);
+                throw new IllegalArgumentException("Cannot read file: " + pathString);
+            }
+            String fileName = path.getFileName().toString();
+            if (!fileName.toLowerCase().endsWith(".xlsx")) {
+                log.error("Invalid file extension (expected .xlsx): {}", pathString);
+                throw new IllegalArgumentException("Invalid file extension (expected .xlsx): " + pathString);
+            }
+        } catch (InvalidPathException e) {
+            log.error("Invalid path format: {}", pathString, e);
+            throw new IllegalArgumentException("Invalid path format: " + pathString, e);
         }
 
     }
