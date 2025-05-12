@@ -61,9 +61,10 @@ fter copying, the file new_report.xlsx will be accessible to the service inside 
 ### 6. Run Natively (Alternative)
 You can also run the JAR file directly. Make sure you provide the correct absolute or relative path to your XLSX files from the location where you run the command.
 java -jar target/*.jar
-##(Note: When running natively, the file path parameter in the API call should be the actual path on your host machine accessible by the running process, unlike the /data/... path used with Docker Compose.)
-Swagger UI / API Documentation
-##This application includes Swagger UI, which provides an interactive web interface for exploring and testing the API.
+#(Note: When running natively, the file path parameter in the API call should be the actual path on your host machine accessible by the running process, unlike the /data/... path used with Docker Compose.)
+
+###Swagger UI / API Documentation
+This application includes Swagger UI, which provides an interactive web interface for exploring and testing the API.
 Once the service is running (either via Docker Compose or natively), you can access the Swagger UI in your web browser at:
 http://localhost:8080/swagger-ui.html
 From the Swagger UI, you can:
