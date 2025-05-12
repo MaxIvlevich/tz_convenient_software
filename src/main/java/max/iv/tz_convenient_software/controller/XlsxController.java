@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @Tag(name = "XLSX API", description = "Finding the nth minimum number in a file")
 public class XlsxController {
+
     private final XlsxServiceInterface xlsxService;
 
     @Operation(summary = "Get the nth minimum number from an xlsx file")
@@ -25,6 +26,4 @@ public class XlsxController {
     ) {
         return xlsxService.findNthMin(path, n);
     }
-
-
 }

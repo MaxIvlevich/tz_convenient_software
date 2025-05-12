@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class XlsxServiceImplTest {
+
     private final XlsxServiceImpl service = new XlsxServiceImpl();
 
     @Test
@@ -25,7 +26,6 @@ public class XlsxServiceImplTest {
     @Test
     void testFindNthMinimum_invalidN() {
         List<Integer> input = Arrays.asList(1, 2);
-
         assertThrows(IllegalArgumentException.class, () -> {
             service.findNthMinimum(input, 5);
         });
@@ -34,7 +34,6 @@ public class XlsxServiceImplTest {
     @Test
     void testFindNthMinimum_zeroN() {
         List<Integer> input = Arrays.asList(1, 2);
-
         assertThrows(IllegalArgumentException.class, () -> {
             service.findNthMinimum(input, 0);
         });
