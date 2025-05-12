@@ -23,8 +23,8 @@ A Spring Boot application that provides a REST API endpoint to find the Nth smal
 
 ### 1. Clone the Repository
 
-git clone https://github.com/MaxIvlevich/tz_convenient_software.git
-cd tz_convenient_software 
+* git clone https://github.com/MaxIvlevich/tz_convenient_software.git
+* cd tz_convenient_software 
 ### 2. Prepare Input Data
 *The repository includes an empty data directory in the project root (tracked via .gitkeep). This directory is mapped to /data inside the Docker container when using docker-compose.
 
